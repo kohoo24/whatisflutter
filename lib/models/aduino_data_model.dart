@@ -1,6 +1,6 @@
 class AduinoDataModel {
   final String id;
-  final int sensor_status;
+  final String sensor_status;
 
   AduinoDataModel({required this.id, required this.sensor_status});
 

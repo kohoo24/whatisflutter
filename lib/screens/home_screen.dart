@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
           child: Container(
+            decoration: const BoxDecoration(color: Color(0xffffffff)),
             child: Column(
               children: [
                 const SizedBox(
@@ -78,6 +79,7 @@ class HomeScreen extends StatelessWidget {
                                 bool found = false;
                                 var datas = snapshot.data;
                                 print(datas);
+                                print(_idController);
                                 for (var item in datas!) {
                                   if (item.id == _idController.text) {
                                     found = true;
@@ -85,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            const DetailPage(),
+                                            DetailPage(id: _idController.text),
                                       ),
                                     );
                                     break;

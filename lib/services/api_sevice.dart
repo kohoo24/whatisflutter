@@ -32,10 +32,9 @@ Future<List<AduinoDataModel>> readAduinoData() async {
   var url = Uri.parse("http://core.apis.ctrls-studio.com/iot");
   try {
     var response = await http.get(url);
-    if (response.statusCode == 201) {
-      final Map<String, dynamic> jsonData = jsonDecode(response.body);
-      final List<dynamic> results = jsonData['results'];
-      for (var result in results) {
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = jsonDecode(response.body);
+      for (var result in jsonData) {
         var aduinoDataModel = AduinoDataModel.formJson(result);
         aduinoDataInstance.add(aduinoDataModel);
       }
@@ -60,12 +59,13 @@ Future<void> updateAduinoData({value_id, value_status}) async {
       ),
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       print('update success');
     } else {
       print(
         'update failed, Status code : ${response.statusCode}',
       );
+      print('$value_status');
     }
   } catch (e) {
     print('$e');
@@ -76,7 +76,7 @@ Future<void> deleteAduinoData({value_id}) async {
   var url = Uri.parse("http://core.apis.ctrls-studio.com/iot/$value_id");
   try {
     var response = await http.delete(url);
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       print('delete success');
     }
   } catch (e) {
