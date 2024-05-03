@@ -90,7 +90,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   Future<void> updateSensorStatus() async {
-    String newStatus = _sensorOn ? '1' : '0';
+    int newStatus = _sensorOn ? 1 : 0;
     try {
       await updateAduinoData(value_id: widget.id, value_status: newStatus);
       print('업데이트 완료!');

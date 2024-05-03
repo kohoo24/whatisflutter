@@ -55,7 +55,7 @@ Future<void> updateAduinoData({value_id, value_status}) async {
       url,
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(
-        {"id": value_id, "sensor_status": value_status},
+        {"id": value_id, "sensor_status": value_status as int},
       ),
     );
 
